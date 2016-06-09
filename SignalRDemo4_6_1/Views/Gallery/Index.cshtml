@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNet.Identity
+@using SignalRDemo4_6_1.BusinessLogic
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using SignalRDemo4_6_1.BusinessLogic
+@model List<SignalRDemo4_6_1.Models.ImageModel>
+@{
+    ViewData["Title"] = "Image Gallery";
+}
+
+<h2>Image Gallery</h2>
+@for (var i = 0; i < Model.Count; i += 3)
+{
+    <div class="row gallerypadding">
+        @for (int j = i; j <= Math.Min(2 + i, Model.Count - 1); j++)
+        {
+            <div class="col-md-3">
+                <div><img src='@BusinessMethods.WriteImage(Model[j].ImageName)' /></div>
+                <input type="hidden" class="userId" value="@User.Identity.GetUserId()"/>
+                <input type="hidden" class="imageId" value="@Model[j].ImageId"/>
+                <div id="@Model[j].ImageId">
+                    @if (UIMethods.UserLikes(User.Identity.GetUserId(),Model[j].ImageId))
+                    {
+                        <span>Liked</span>
+                    }
+                    else
+                    {
+                        <a href="#" class="like">Like</a>
+                    }
+                    <span>@String.Format("{0} Likes", UIMethods.TotalLikes(Model[j].ImageId))</span>
+                </div>
+                
+            </div>
+        }
+    </div>
+}
+<div id="result"></div>
+
+@section scripts{
+
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/likes.js"></script>
+}
