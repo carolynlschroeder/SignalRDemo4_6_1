@@ -19,25 +19,20 @@
         {
             <div class="col-md-3">
                 <div><img src='@BusinessMethods.WriteImage(Model[j].ImageName)' /></div>
-                <input type="hidden" class="userId" value="@User.Identity.GetUserId()"/>
                 <input type="hidden" class="imageId" value="@Model[j].ImageId"/>
-                <div id="@Model[j].ImageId">
-                    @if (UIMethods.UserLikes(User.Identity.GetUserId(),Model[j].ImageId))
-                    {
-                        <span>Liked</span>
-                    }
-                    else
-                    {
-                        <a href="#" class="like">Like</a>
-                    }
-                    <span>@String.Format("{0} Likes", UIMethods.TotalLikes(Model[j].ImageId))</span>
+                <div class="divLikes">
+                    <input type="hidden" class="userLikes" value="@UIMethods.UserLikes(User.Identity.GetUserId(), Model[j].ImageId).ToString()"/>
+                    <input type="hidden" class="imageId" value="@Model[j].ImageId"/>
+                    <a href="#" class="like" id="a_@Model[j].ImageId">Like</a><span id="sp_@Model[j].ImageId" class="liked">Liked</span>
+                    <span id="tLikes_@Model[j].ImageId">@String.Format("{0} Likes", UIMethods.TotalLikes(Model[j].ImageId))</span>
                 </div>
-                
             </div>
         }
     </div>
 }
+<input type="hidden" id="userId" value="@User.Identity.GetUserId()"/>
 <div id="result"></div>
+
 
 @section scripts{
 

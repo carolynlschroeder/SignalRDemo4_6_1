@@ -14,7 +14,16 @@ namespace SignalRDemo4_6_1.Entities
     
     public partial class Image
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Image()
+        {
+            this.UserLikes = new HashSet<UserLike>();
+        }
+    
         public System.Guid ImageId { get; set; }
         public string ImageName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserLike> UserLikes { get; set; }
     }
 }

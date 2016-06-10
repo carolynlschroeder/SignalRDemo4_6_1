@@ -12,7 +12,7 @@ namespace SignalRDemo4_6_1
             ConfigureAuth(app);
 
             app.MapSignalR();
-            //GlobalHost.HubPipeline.RequireAuthentication();
+            GlobalHost.HubPipeline.RequireAuthentication();
         }
     }
 }

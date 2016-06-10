@@ -11,16 +11,16 @@ namespace SignalRDemo4_6_1.BusinessLogic
         public static bool UserLikes(string userId, Guid imageId)
         {
             var repository = new ImageRepository();
-            var userLikeList = repository.GetUserLikes();
-            return userLikeList.Any(l => l.UserId == userId || l.ImageId == imageId);
+            var image = repository.FindImageById(imageId);
+            return image.UserLikes.Any(ui => ui.UserId == userId);
+
         }
 
         public static int TotalLikes(Guid imageId)
         {
             var repository = new ImageRepository();
-            var userLikeList = repository.GetUserLikes();
-            return userLikeList.Count(l => l.ImageId == imageId);
-
+            var image = repository.FindImageById(imageId);
+            return image.UserLikes.Count();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using SignalRDemo4_6_1.Entities;
@@ -15,9 +16,15 @@ namespace SignalRDemo4_6_1.Repositories
             return entities.Images.ToList();
         }
 
-        public List<UserLike> GetUserLikes()
+        public Image FindImageById(Guid imageId)
         {
-            return entities.UserLikes.ToList();
+            return entities.Images.FirstOrDefault(i => i.ImageId == imageId);
+        }
+
+        public void UpdateImage(Image image)
+        {
+            entities.Entry<Image>(image).State = EntityState.Modified;
+            entities.SaveChanges();
         }
     }
 }

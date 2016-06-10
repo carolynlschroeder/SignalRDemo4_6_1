@@ -17,5 +17,7 @@ namespace SignalRDemo4_6_1.Entities
         public System.Guid UserLikesId { get; set; }
         public string UserId { get; set; }
         public System.Guid ImageId { get; set; }
+    
+        public virtual Image Image { get; set; }
     }
 }
