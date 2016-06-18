@@ -242,6 +242,7 @@
     <Content Include="Images\462.jpg" />
     <Content Include="Images\463.jpg" />
     <Content Include="Images\464.jpg" />
+    <Content Include="Images\fb_thumb.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Entities\GalleryEntities.edmx">

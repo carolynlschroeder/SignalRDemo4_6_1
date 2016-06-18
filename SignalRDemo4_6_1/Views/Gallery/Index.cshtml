@@ -23,7 +23,11 @@
                 <div class="divLikes">
                     <input type="hidden" class="userLikes" value="@UIMethods.UserLikes(User.Identity.GetUserId(), Model[j].ImageId).ToString()"/>
                     <input type="hidden" class="imageId" value="@Model[j].ImageId"/>
-                    <a href="#" class="like" id="a_@Model[j].ImageId">Like</a><span id="sp_@Model[j].ImageId" class="liked">Liked</span>
+                    @{
+                        var anchorvisible = UIMethods.UserLikes(User.Identity.GetUserId(), Model[j].ImageId) ? "notvisible" : "visible";
+                        var spanvisible = UIMethods.UserLikes(User.Identity.GetUserId(), Model[j].ImageId) ? "visible" : "notvisible";
+                    }
+                    <a href="#" class="like @anchorvisible" id="a_@Model[j].ImageId"><img src="~/Images/fb_thumb.png"/></a><span id="sp_@Model[j].ImageId" class="liked @spanvisible">Liked</span>
                     <span id="tLikes_@Model[j].ImageId">@String.Format("{0} Likes", UIMethods.TotalLikes(Model[j].ImageId))</span>
                 </div>
             </div>
