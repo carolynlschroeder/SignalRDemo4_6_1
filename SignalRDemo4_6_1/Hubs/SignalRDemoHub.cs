@@ -24,10 +24,5 @@ namespace SignalRDemo4_6_1.Hubs
             repository.UpdateImage(image);
             Clients.All.addNewMessageToPage(userId, imageId);
         }
-
-        //public void LikeImage(string userId, Guid imageId)
-        //{
-        //    Clients.All.addNewMessageToPage(userId, imageId);
-        //}
     }
 }
